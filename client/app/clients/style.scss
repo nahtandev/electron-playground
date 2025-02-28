@@ -1,0 +1,169 @@
+// Variables
+$color-primary: #0284c7;
+$color-primary-dark: #0369a1;
+$color-success: #22c55e;
+$color-white: #ffffff;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-900: #111827;
+
+// Clients Page
+.clients {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: $color-gray-900;
+  }
+
+  &__add-button {
+    padding: 0.5rem 1rem;
+    background-color: $color-primary;
+    color: $color-white;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: $color-primary-dark;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// Client Card
+.client-card {
+  background-color: $color-white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  &__header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 3rem;
+    height: 3rem;
+    background-color: $color-gray-100;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__initials {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $color-gray-600;
+  }
+
+  &__status {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+
+    &--active {
+      background-color: rgba($color-success, 0.1);
+      color: $color-success;
+    }
+  }
+
+  &__body {
+    padding: 0 1.5rem;
+  }
+
+  &__name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $color-gray-900;
+  }
+
+  &__email {
+    color: $color-gray-500;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid $color-gray-200;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__stat-label {
+    font-size: 0.875rem;
+    color: $color-gray-500;
+  }
+
+  &__stat-value {
+    font-weight: 600;
+    color: $color-gray-900;
+  }
+
+  &__footer {
+    padding: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__button {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s;
+
+    &--primary {
+      color: $color-primary;
+
+      &:hover {
+        background-color: rgba($color-primary, 0.1);
+      }
+    }
+
+    &--secondary {
+      color: $color-success;
+
+      &:hover {
+        background-color: rgba($color-success, 0.1);
+      }
+    }
+  }
+}
