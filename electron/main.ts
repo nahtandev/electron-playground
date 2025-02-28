@@ -41,6 +41,27 @@ function startNestServer() {
       console.log(`NestJS process exited with code ${code}`);
       nestProcess = null;
     });
+  } 
+
+  if(!isDev && !nestProcess) {
+    console.log("Starting NestJS server...");
+    nestProcess = spawn("npm", ["run", "start:prod"], {
+      cwd: serverPath,
+      shell: true,
+    });
+
+    nestProcess.stdout.on("data", (data: Buffer) => {
+      console.log(`NestJS: ${data}`);
+    });
+
+    nestProcess.stderr.on("data", (data: Buffer) => {
+      console.error(`NestJS Error: ${data}`);
+    });
+
+    nestProcess.on("close", (code: number) => {
+      console.log(`NestJS process exited with code ${code}`);
+      nestProcess = null;
+    });
   }
 }
 
