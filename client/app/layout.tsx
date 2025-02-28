@@ -1,19 +1,8 @@
 import "./global.scss";
-import "./_common/knacss.scss";
-
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { geistMono } from "./_common/fonts/fonts";
 import Sidebar from "./components/sidebar/sidebar";
+import { Metadata } from "next";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Dashboard App",
@@ -26,14 +15,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="layout">
-      <body className="layout__body">
-        <div className="layout__container">
-          <Sidebar />
-          <div className="layout__main">
-            <main className="layout__content">
-              {children}
-            </main>
+    <html lang="fr" className={`${geistMono.variable}`}>
+      <body>
+        <div className="layout">
+          <div className="layout__body">
+            <div className="layout__container">
+              <Sidebar />
+              <main className="layout__main">
+                <div className="layout__content">{children}</div>
+              </main>
+            </div>
           </div>
         </div>
       </body>

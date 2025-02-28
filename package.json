@@ -8,19 +8,55 @@
     "start": "cross-env NODE_ENV=production npm run compile && electron .",
     "dev": "cross-env NODE_ENV=development concurrently \"cd client && npm run dev\" \"tsc -w\" \"npm run dev:electron\"",
     "dev:electron": "wait-on tcp:3000 && electron .",
-    "build": "npm run build:next && npm run compile",
+    "build": "npm run build:all && npm run build:electron",
+    "build:all": "concurrently \"npm run build:next\" \"npm run build:nest\" \"npm run compile\"",
     "build:next": "cd client && npm run build",
+    "build:nest": "cd server && npm run build",
+    "build:electron": "electron-builder",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,html,css,md}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "nahtandev",
+  "author": {
+    "name": "nahtandev",
+    "email": "sayme@hellonathan.dev"
+  },
   "license": "MIT",
   "workspaces": [
     "client",
     "server"
   ],
+  "build": {
+    "appId": "com.nahtandev.electron-playground",
+    "productName": "Electron Playground",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "build/**/*",
+      "client/out/**/*",
+      "server/dist/**/*",
+      "server/package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server/dist",
+        "to": "server/dist",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "server/node_modules",
+        "to": "server/node_modules",
+        "filter": ["**/*"]
+      }
+    ],
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Development"
+    }
+  },
   "devDependencies": {
     "electron": "^34.3.0",
     "electron-builder": "^25.1.8",

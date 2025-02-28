@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   },
   // Désactive le mode strict en développement pour éviter les problèmes avec Electron
   reactStrictMode: process.env.NODE_ENV === "production",
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 };
 
 export default nextConfig;

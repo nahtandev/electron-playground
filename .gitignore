@@ -7,6 +7,12 @@ node_modules
 client/.next/
 client/out/
 
+# NestJS
+server/dist/
+server/node_modules/
+server/coverage/
+server/.nyc_output/
+
 # Production
 /build
 /dist

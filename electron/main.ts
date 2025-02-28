@@ -2,9 +2,13 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import electronReload from "electron-reload";
 import waitOn from "wait-on";
+import { spawn } from "child_process";
 
 const isDev = process.env.NODE_ENV === "development";
-const port = process.env.PORT || 3000;
+const nextPort = 3000;
+const nestPort = 5000;
+
+let nestProcess: any = null;
 
 // Active le hot reload en développement
 if (isDev) {
@@ -14,7 +18,36 @@ if (isDev) {
   });
 }
 
+function startNestServer() {
+  console.log("Nest server start")
+  const serverPath = path.join(__dirname, "../..", "server");
+  console.log("Server path:", serverPath)
+  if (isDev && !nestProcess) {
+    console.log("Starting NestJS server...");
+    nestProcess = spawn("npm", ["run", "start:dev"], {
+      cwd: serverPath,
+      shell: true,
+    });
+
+    nestProcess.stdout.on("data", (data: Buffer) => {
+      console.log(`NestJS: ${data}`);
+    });
+
+    nestProcess.stderr.on("data", (data: Buffer) => {
+      console.error(`NestJS Error: ${data}`);
+    });
+
+    nestProcess.on("close", (code: number) => {
+      console.log(`NestJS process exited with code ${code}`);
+      nestProcess = null;
+    });
+  }
+}
+
 async function createWindow() {
+  // Démarrer le serveur NestJS en développement
+  startNestServer();
+
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -27,11 +60,14 @@ async function createWindow() {
 
   // En développement, charge l'URL de développement de Next.js
   if (isDev) {
-    // Attendre que le serveur Next.js soit prêt
+    // Attendre que les serveurs Next.js et NestJS soient prêts
     await waitOn({ 
-      resources: [`http://localhost:${port}`],
-     });
-    await win.loadURL(`http://localhost:${port}`);
+      resources: [
+        `http://localhost:${nextPort}`,
+        `http://localhost:${nestPort}`
+      ],
+    });
+    await win.loadURL(`http://localhost:${nextPort}`);
     win.webContents.openDevTools();
   } else {
     // En production, charge l'application Next.js exportée
@@ -49,6 +85,12 @@ async function createWindow() {
 app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
+  // Arrêter le serveur NestJS avant de quitter
+  if (nestProcess) {
+    nestProcess.kill();
+    nestProcess = null;
+  }
+
   if (process.platform !== "darwin") {
     app.quit();
   }
