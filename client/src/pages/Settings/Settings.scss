@@ -1,0 +1,179 @@
+@use '../../styles/variables' as *;
+
+.settings {
+  padding: $spacing-lg;
+
+  &__header {
+    margin-bottom: $spacing-xl;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: $spacing-lg;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  &__tabs {
+    padding: $spacing-md;
+    background-color: #f8f9fa;
+    border-right: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__tab {
+    padding: $spacing-md;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: $secondary-color;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+      color: $primary-color;
+    }
+
+    &--active {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+
+  &__panel {
+    padding: $spacing-lg;
+    min-height: 500px;
+  }
+
+  &__section {
+    margin-bottom: $spacing-xl;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: 1.5rem;
+    margin: 0 0 $spacing-lg 0;
+    color: $text-color;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    max-width: 600px;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+      font-weight: 500;
+      color: $secondary-color;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    select,
+    textarea {
+      padding: $spacing-sm;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  }
+
+  &__actions {
+    margin-top: $spacing-xl;
+    display: flex;
+    gap: $spacing-md;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $border-color;
+  }
+
+  &__button {
+    padding: $spacing-sm $spacing-lg;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &--primary {
+      background-color: $primary-color;
+      color: white;
+
+      &:hover {
+        background-color: darken($primary-color, 5%);
+      }
+    }
+
+    &--secondary {
+      background-color: #f8f9fa;
+      color: $text-color;
+      border: 1px solid $border-color;
+
+      &:hover {
+        background-color: darken(#f8f9fa, 5%);
+      }
+    }
+
+    &--danger {
+      background-color: #fee2e2;
+      color: #ef4444;
+      border: 1px solid #fecaca;
+
+      &:hover {
+        background-color: #fecaca;
+      }
+    }
+  }
+}

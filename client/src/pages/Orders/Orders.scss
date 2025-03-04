@@ -1,0 +1,111 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+.orders {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &__add-btn {
+    padding: $spacing-sm $spacing-lg;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+    }
+  }
+
+  &__toolbar {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__table {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__status {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    &--complétée {
+      background-color: color.adjust($success-color, $alpha: -0.9);
+      color: $success-color;
+    }
+
+    &--en-cours {
+      background-color: color.adjust($warning-color, $alpha: -0.9);
+      color: $warning-color;
+    }
+
+    &--annulée {
+      background-color: color.adjust($danger-color, $alpha: -0.9);
+      color: $danger-color;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__action-btn {
+    padding: $spacing-xs;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+
+  &__pagination-btn {
+    padding: $spacing-sm $spacing-md;
+    background-color: white;
+    border: 1px solid color.adjust($dark-color, $alpha: -0.9);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: $light-color;
+      border-color: color.adjust($dark-color, $alpha: -0.8);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__pagination-info {
+    color: $secondary-color;
+  }
+}

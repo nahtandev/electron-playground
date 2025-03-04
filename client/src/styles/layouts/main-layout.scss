@@ -1,0 +1,18 @@
+@use '../variables' as *;
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+  background-color: $light-color;
+
+  &__sidebar {
+    width: 250px;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: $spacing-lg;
+    overflow-y: auto;
+  }
+}

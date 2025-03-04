@@ -1,0 +1,59 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px color.adjust($dark-color, $alpha: -0.9);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__head {
+    background-color: $light-color;
+  }
+
+  &__header {
+    padding: $spacing-md;
+    text-align: left;
+    font-weight: 600;
+    color: $secondary-color;
+    border-bottom: 2px solid color.adjust($dark-color, $alpha: -0.9);
+  }
+
+  &__body {
+    .table__row {
+      border-bottom: 1px solid color.adjust($dark-color, $alpha: -0.95);
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: color.adjust($primary-color, $alpha: -0.95);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__cell {
+    padding: $spacing-md;
+    color: $dark-color;
+
+    &--status {
+      &-completed {
+        color: $success-color;
+      }
+      &-pending {
+        color: $warning-color;
+      }
+      &-cancelled {
+        color: $danger-color;
+      }
+    }
+  }
+}

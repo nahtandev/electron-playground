@@ -1,0 +1,71 @@
+@use '../../styles/variables' as *;
+
+.sidebar {
+  background-color: $dark-color;
+  color: $light-color;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: $spacing-md;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__nav {
+    flex-grow: 1;
+    padding: $spacing-md 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: $spacing-md $spacing-lg;
+    color: $light-color;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      background-color: $primary-color;
+    }
+  }
+
+  &__icon {
+    margin-right: $spacing-md;
+  }
+
+  &__footer {
+    padding: $spacing-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__user-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+  }
+
+  &__user-info {
+    font-size: 0.875rem;
+  }
+}

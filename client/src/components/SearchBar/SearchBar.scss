@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+
+  &__input {
+    width: 100%;
+    padding: $spacing-md;
+    padding-right: $spacing-xl * 1.5;
+    border: 1px solid rgba($dark-color, 0.1);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &::placeholder {
+      color: rgba($dark-color, 0.4);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba($dark-color, 0.4);
+    pointer-events: none;
+  }
+}
